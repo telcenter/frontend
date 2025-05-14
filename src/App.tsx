@@ -8,8 +8,9 @@ const Home = lazy(() => import('./pages/home'));
 const AdminLogin = lazy(() => import('./pages/admin/login'));
 const AdminRegister = lazy(() => import('./pages/admin/register'));
 const AdminPage = lazy(() => import('./pages/admin'));
-const PackageManager = lazy(() => import('./pages/admin/package-manager'));
 const FaqManager = lazy(() => import('./pages/admin/faq-manager'));
+const PackageManager = lazy(() => import('./pages/admin/package-manager'));
+const PackageMetadataInterpretationManager = lazy(() => import('./pages/admin/package-metadata-interpretation-manager'));
 
 function App() {
   return (
@@ -23,8 +24,9 @@ function App() {
           <Route path='/admin' element={<AdminPage />} />
           <Route path='/admin/login' element={<AdminLogin />} />
           <Route path='/admin/register' element={<AdminRegister />} />
-          <Route path='/admin/package-manager' element={<PackageManager />} />
           <Route path='/admin/faq-manager' element={<FaqManager />} />
+          <Route path='/admin/package-metadata-interpretation-manager' element={<PackageMetadataInterpretationManager />} />
+          <Route path='/admin/package-manager' element={<PackageManager />} />
 
           {/* <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminPage />} />

@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { AdminAuthProtected } from "../../../components/AdminAuthProtected";
-import { usePackageTable } from "./hooks/usePackageTable";
-import { PackageCreateForm } from "./package-create-form";
 import { Button, Table } from "antd";
+import { AdminAuthProtected } from "../../../components/AdminAuthProtected";
+import { usePackageMetadataInterpretationTable } from "./hooks/usePackageMetadataInterpretationTable";
+import { PackageMetadataInterpretationCreateForm } from "./package-metadata-interpretation-create-form";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 
-export default function PackageManagerPage() {
-    const { data, columns, update, packageMetadataInterpretations } = usePackageTable();
+export default function PackageMetadataInterpretationManagerPage() {
+    const { data, columns, update } = usePackageMetadataInterpretationTable();
 
     const [createFormOpen, setCreateFormOpen] = useState(false);
 
@@ -14,14 +14,13 @@ export default function PackageManagerPage() {
 
     return <AdminAuthProtected props={{}} component={({ auth }) => (
         <>
-            <PackageCreateForm
+            <PackageMetadataInterpretationCreateForm
                 open={createFormOpen} setOpen={setCreateFormOpen}
                 update={update} auth={auth}
-                packageMetadataInterpretations={packageMetadataInterpretations}
             />
 
             <div>
-                <h1>Quản lý gói cước</h1>
+                <h1>Quản lý định dạng thông tin gói cước</h1>
 
                 <div style={{
                     display: 'flex',
@@ -30,11 +29,11 @@ export default function PackageManagerPage() {
                     marginBottom: '16px',
                 }}>
                     <Button type="primary" onClick={() => setCreateFormOpen(true)}>
-                        Thêm gói cước
+                        Thêm trường thông tin gói cước
                     </Button>
 
-                    <Button onClick={() => navigate("/admin/package-metadata-interpretation-manager")} style={{ marginLeft: '16px' }}>
-                        Cài đặt định dạng thông tin gói cước
+                    <Button onClick={() => navigate('/admin/package-manager')} style={{ marginLeft: '16px' }}>
+                        Quản lý gói cước
                     </Button>
                 </div>
 

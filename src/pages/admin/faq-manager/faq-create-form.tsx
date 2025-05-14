@@ -54,7 +54,7 @@ export function FaqCreateForm({ open, setOpen, update, auth }: {
     };
 
     return <Modal
-        title={<p>Loading Modal</p>}
+        title={<p>Tạo câu hỏi thường gặp</p>}
         footer={
             <>
                 <Button onClick={onCreate} type="primary">Tạo</Button>
@@ -62,7 +62,7 @@ export function FaqCreateForm({ open, setOpen, update, auth }: {
             </>
         }
         open={open}
-        onCancel={() => setOpen(false)}
+        onCancel={onCancel}
     >
         <div style={{
             gap: '16px',
