@@ -11,6 +11,7 @@ const FaqManager = lazy(() => import('./pages/admin/faq-manager'));
 const PackageManager = lazy(() => import('./pages/admin/package-manager'));
 const PackageMetadataInterpretationManager = lazy(() => import('./pages/admin/package-metadata-interpretation-manager'));
 const AccountManager = lazy(() => import('./pages/admin/account-manager'));
+const CustomerServiceChatsViewer = lazy(() => import('./pages/admin/customer-service-chats-viewer'));
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path='/admin/package-metadata-interpretation-manager' element={<PackageMetadataInterpretationManager />} />
           <Route path='/admin/package-manager' element={<PackageManager />} />
           <Route path='/admin/account-manager' element={<AccountManager />} />
+          <Route path='/admin/customer-service-chats-viewer' element={<CustomerServiceChatsViewer />} />
         </Routes>
       </Router>
     </AuthProvider>

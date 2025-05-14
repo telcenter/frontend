@@ -54,7 +54,9 @@ export function AdminAuthProtected<T extends {}>({
                     <Button type="primary">Tài khoản {auth.admin.email}</Button>
                 </Popover>
             </div>
-            <div>
+            <div style={{
+                marginTop: '3rem',
+            }}>
                 {component({
                     ...props,
                     auth,
