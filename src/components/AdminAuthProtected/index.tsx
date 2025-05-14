@@ -49,7 +49,7 @@ export function AdminAuthProtected<T extends {}>({
                 flexDirection: 'row',
                 justifyContent: 'space-between',
             }}>
-                <span>Trang quản trị</span>
+                <Link to={"/admin"}>Trang quản trị</Link>
                 <Popover content={<AuthOptions />} trigger="click">
                     <Button type="primary">Tài khoản {auth.admin.email}</Button>
                 </Popover>

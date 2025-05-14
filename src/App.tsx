@@ -4,13 +4,13 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router'
 import { AuthProvider } from './contexts/AuthProvider';
 
 const Home = lazy(() => import('./pages/home'));
-
 const AdminLogin = lazy(() => import('./pages/admin/login'));
 const AdminRegister = lazy(() => import('./pages/admin/register'));
 const AdminPage = lazy(() => import('./pages/admin'));
 const FaqManager = lazy(() => import('./pages/admin/faq-manager'));
 const PackageManager = lazy(() => import('./pages/admin/package-manager'));
 const PackageMetadataInterpretationManager = lazy(() => import('./pages/admin/package-metadata-interpretation-manager'));
+const AccountManager = lazy(() => import('./pages/admin/account-manager'));
 
 function App() {
   return (
@@ -27,23 +27,7 @@ function App() {
           <Route path='/admin/faq-manager' element={<FaqManager />} />
           <Route path='/admin/package-metadata-interpretation-manager' element={<PackageMetadataInterpretationManager />} />
           <Route path='/admin/package-manager' element={<PackageManager />} />
-
-          {/* <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<AdminPage />} />
-            <Route path="package-manager" element={<PackageManager />} />
-            <Route path="faq-manager" element={<FaqManager />} />
-          {/* <Route path="about" element={<About />} />
-
-  <Route element={<AuthLayout />}>
-    <Route path="login" element={<Login />} />
-    <Route path="register" element={<Register />} />
-  </Route>
-
-  <Route path="concerts">
-    <Route index element={<ConcertsHome />} />
-    <Route path=":city" element={<City />} />
-    <Route path="trending" element={<Trending />} />
-  </Route> */}
+          <Route path='/admin/account-manager' element={<AccountManager />} />
         </Routes>
       </Router>
     </AuthProvider>

@@ -16,7 +16,9 @@ export default function AdminPage() {
                     flexDirection: 'column',
                     gap: '1rem',
                 }}>
+                    <ButtonLink to={'/admin/account-manager'}>Quản lý tài khoản</ButtonLink>
                     <ButtonLink to={'/admin/package-manager'}>Quản lý gói cước</ButtonLink>
+                    <ButtonLink to={'/admin/package-metadata-interpretation-manager'}>Quản lý định dạng thông tin gói cước</ButtonLink>
                     <ButtonLink to={'/admin/faq-manager'}>Quản lý câu hỏi thường gặp</ButtonLink>
                 </div>
             </div>
