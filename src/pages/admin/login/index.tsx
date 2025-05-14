@@ -1,13 +1,16 @@
 import React from 'react';
-import { Form, Input, Button, Typography } from 'antd';
+import { Form, Input, Button, Typography, notification } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router';
 import { BACKEND_URL } from '../../../env';
+import { useAuth } from '../../../contexts/AuthProvider';
 
 const { Title } = Typography;
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
+
+    const { setAuth } = useAuth();
 
     const onFinish = async (values: { email: string; password: string }) => {
         const res = await fetch(`${BACKEND_URL}/admin/auth/login`, {
@@ -22,10 +25,23 @@ const LoginPage: React.FC = () => {
 
         if (!res.ok) {
             console.error('Login failed:', data);
-            alert(data.message || 'Đăng nhập thất bại');
+            notification.error({
+                message: 'Đăng nhập thất bại',
+                description: data.message || 'Vui lòng kiểm tra lại thông tin đăng nhập.',
+            });
         } else {
-            alert("Đăng nhập thành công!");
-            // TODO: AuthProvider
+            notification.success({
+                message: 'Đăng nhập thành công',
+                description: 'Bạn đang được chuyển hướng tới trang quản trị.',
+            });
+            setAuth({
+                authenticated: true,
+                admin: {
+                    id: data.admin.id,
+                    email: data.admin.email,
+                },
+                accessToken: data.access_token,
+            });
             navigate('/admin');
         }
     };

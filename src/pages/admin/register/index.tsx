@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, Typography } from 'antd';
+import { Form, Input, Button, Typography, notification } from 'antd';
 import { MailOutlined, LockOutlined, KeyOutlined, SafetyOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router';
 import { BACKEND_URL } from '../../../env';
@@ -24,12 +24,21 @@ const RegisterForm: React.FC = () => {
             console.error('Register failed:', data);
             const messageRaw = ("" + (data.message ?? "")).toLowerCase();
             if (messageRaw.includes("unique constraint") && messageRaw.includes("email")) {
-                alert("Tài khoản có email này đã tồn tại");
+                notification.error({
+                    message: 'Đăng ký thất bại',
+                    description: 'Tài khoản với email này đã tồn tại.',
+                });
             } else {
-                alert(data.message || 'Đăng ký thất bại');
+                notification.error({
+                    message: 'Đăng ký thất bại',
+                    description: data.message || 'Vui lòng kiểm tra lại thông tin đăng ký.',
+                });
             }
         } else {
-            alert("Đăng ký thành công, vui lòng đăng nhập.");
+            notification.success({
+                message: 'Đăng ký thành công',
+                description: 'Vui lòng đăng nhập.',
+            });
             navigate('/admin/login');
         }
     };
