@@ -2,7 +2,7 @@ import { Button, Input, notification, Space } from "antd";
 import { useUser } from "../../contexts/UserProvider";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { BACKEND_URL } from "../../env";
+import { BACKEND_URL, FRONTEND_AUDIOCALL_URL } from "../../env";
 
 const getAccountByPhoneNumber = async (phoneNumber: string): Promise<{
     id: number;
@@ -40,14 +40,16 @@ export default function UserPage() {
 
     const verifyPhoneNumber = async () => {
         const account = await getAccountByPhoneNumber(phoneNumber);
-        setUser({
+        const newUserObject = {
             accountId: account.id,
             fullName: account.full_name,
             phoneNumber: account.phone_number,
             createdAt: account.created_at,
             status: account.status,
             balance: account.balance,
-        });
+        };
+        setUser(newUserObject);
+        return newUserObject;
     };
 
     const onChat = () => {
@@ -55,7 +57,34 @@ export default function UserPage() {
     };
 
     const onCall = () => {
-        verifyPhoneNumber().then(() => navigate('/user/call'));
+        verifyPhoneNumber().then(async user => {
+            const res = await fetch(`${BACKEND_URL}/end-user/audio-calls`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${user.accountId}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    phone_number: user.phoneNumber,
+                }),
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                notification.success({
+                    message: 'Thành công',
+                    description: 'Tạo cuộc trò chuyện thành công.',
+                });
+                window.open(`${FRONTEND_AUDIOCALL_URL}?chatId=${data.id}&accountId=${data.account_id}&phoneNumber=${phoneNumber}`, '_blank');
+            } else {
+                console.error(data);
+                notification.error({
+                    message: 'Lỗi',
+                    description: 'Có lỗi xảy ra khi tạo cuộc trò chuyện.',
+                });
+            }
+        });
     };
 
     return (
