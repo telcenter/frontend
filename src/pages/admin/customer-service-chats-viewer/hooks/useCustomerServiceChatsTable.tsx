@@ -35,21 +35,8 @@ export function useCustomerServiceChatsTable({
 
             if (res.ok) {
                 setChats(data);
-                setLastUpdateTime(Format.datetime(new Date()));
-                if (currentChatIdInDetails) {
-                    const chat = data.find((chat: any) => chat.id === currentChatIdInDetails);
-                    if (chat) {
-                        setChatDetails({
-                            summary: chat.summary,
-                            lastUpdateTime: lastUpdateTime,
-                        });
-                    } else {
-                        setChatDetails({
-                            summary: "Không còn tìm thấy cuộc trò chuyện này.",
-                            lastUpdateTime: lastUpdateTime,
-                        })
-                    }
-                }
+                const lastUpdateTime = Format.datetime(new Date());
+                setLastUpdateTime(lastUpdateTime);
             } else {
                 notification.error({
                     message: 'Lỗi',
@@ -79,6 +66,28 @@ export function useCustomerServiceChatsTable({
             updateInterval.current = null;
         };
     }, [auth, location]);
+
+    useEffect(() => {
+        if (currentChatIdInDetails) {
+            const chat = chats.find((chat: any) => chat.id === currentChatIdInDetails);
+            if (chat) {
+                setChatDetails({
+                    summary: chat.summary,
+                    lastUpdateTime: lastUpdateTime,
+                });
+            } else {
+                setChatDetails({
+                    summary: "Không còn tìm thấy cuộc trò chuyện này.",
+                    lastUpdateTime: "-",
+                })
+            }
+        } else {
+            setChatDetails({
+                summary: "Bạn chưa chọn cuộc trò chuyện nào.",
+                lastUpdateTime: "-",
+            });
+        }
+    }, [chats, currentChatIdInDetails, lastUpdateTime]);
 
     const columns = [
         {
