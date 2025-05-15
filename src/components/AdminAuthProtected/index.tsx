@@ -23,7 +23,7 @@ function AuthOptions() {
             flexDirection: 'column',
             gap: '1rem',
         }}>
-            <h2>Thông tin tài khoản</h2>
+            <h2 style={{ fontWeight: 'bold' }}>Thông tin tài khoản</h2>
             <p>ID: {auth.admin.id}</p>
             <p>Email: {auth.admin.email}</p>
             <Button onClick={logout}>Đăng xuất</Button>

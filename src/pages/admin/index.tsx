@@ -17,7 +17,7 @@ export default function AdminPage() {
                     gap: '1rem',
                 }}>
                     <ButtonLink to={'/admin/customer-service-chats-viewer'}>Theo dõi các cuộc trò chuyện với khách hàng đang diễn ra</ButtonLink>
-                    <ButtonLink to={'/admin/account-manager'}>Quản lý tài khoản</ButtonLink>
+                    <ButtonLink to={'/admin/account-manager'}>Quản lý thuê bao</ButtonLink>
                     <ButtonLink to={'/admin/package-manager'}>Quản lý gói cước</ButtonLink>
                     <ButtonLink to={'/admin/package-metadata-interpretation-manager'}>Quản lý định dạng thông tin gói cước</ButtonLink>
                     <ButtonLink to={'/admin/faq-manager'}>Quản lý câu hỏi thường gặp</ButtonLink>

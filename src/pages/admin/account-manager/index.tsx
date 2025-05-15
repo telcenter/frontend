@@ -17,7 +17,7 @@ export default function AccountManagerPage() {
             />
 
             <div>
-                <h1>Quản lý tài khoản</h1>
+                <h1>Quản lý thuê bao</h1>
 
                 <div style={{
                     display: 'flex',
@@ -26,7 +26,7 @@ export default function AccountManagerPage() {
                     marginBottom: '16px',
                 }}>
                     <Button type="primary" onClick={() => setCreateFormOpen(true)}>
-                        Thêm tài khoản
+                        Thêm thuê bao
                     </Button>
                 </div>
 

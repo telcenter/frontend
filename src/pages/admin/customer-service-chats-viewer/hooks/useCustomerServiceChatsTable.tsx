@@ -83,13 +83,13 @@ export function useCustomerServiceChatsTable({
     const columns = [
         {
             title: "Tên khách hàng",
-            dataIndex: "account.full_name",
+            dataIndex: ["account", "full_name"],
             key: "account.full_name",
         },
 
         {
             title: "Số điện thoại",
-            dataIndex: "account.phone_number",
+            dataIndex: ["account", "phone_number"],
             key: "account.phone_number",
         },
 

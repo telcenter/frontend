@@ -1,13 +1,18 @@
-import { Button } from "antd"
-import { useState } from "react"
+import { Space } from "antd";
+import { ButtonLink } from "../../components/ButtonLink";
 
 function Home() {
-  const [count, setCount] = useState(0)
+  return (<>
+    <div>
+      <h1>telcenter</h1>
+      <p>Hệ thống trả lời tổng đài bán tự động của nhà mạng Viettel</p>
 
-  return (
-    <>
-      <Button onClick={() => setCount(x => x+1)}>Hello {count}</Button>
-    </>
+      <Space size='middle'>
+        <ButtonLink type="primary" to="/user">Trang dành cho người dùng</ButtonLink>
+        <ButtonLink to="/admin">Trang quản trị</ButtonLink>
+      </Space>
+    </div>
+  </>
   )
 }
 
